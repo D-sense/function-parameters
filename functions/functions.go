@@ -8,6 +8,18 @@ type Profile struct {
 	TechInterest bool
 }
 
+type Detail struct {
+	Age int
+	Name string
+	Cash float64
+	TechInterest bool
+    Countries [3]string
+	MyProfile Profile
+}
+
+type GetName func(string) string
+
+
 // Functions for manipulating Primitive/Basic Types
 func ModifyInt(n int) int {
 	return n + 5
@@ -51,7 +63,8 @@ func ModifyMap(expenses map[string]int) map[string]int {
 	return expenses
 }
 
-func ModifyBasicTypes(name *string, age *int, cash *float64, techInterest *bool, country *[3]string, p *Profile) (*string, *int, *float64, *bool, *[3]string, *Profile)  {
+func (d *Detail) ModifyBasicTypes()  {
+	//name *string, age *int, cash *float64, techInterest *bool, country *[3]string, p *Profile
 	newName := "Golang"
 	newAge := 90
 	newCash := 50.45
@@ -64,14 +77,14 @@ func ModifyBasicTypes(name *string, age *int, cash *float64, techInterest *bool,
 		TechInterest: false,
 	}
 
-	name = &newName
-	age = &newAge
-	cash = &newCash
-	techInterest = &newTechInterest
-	country = &newCountries
-	p = &newProfile
-
-	return name, age, cash, techInterest, country, p
+	d.Name = newName
+	d.Age = newAge
+	d.Cash = newCash
+	d.TechInterest = newTechInterest
+	d.Countries = newCountries
+	d.MyProfile = newProfile
 }
 
-
+func ModifyFunction(f GetName, name string) string{
+	return f(name)
+}
